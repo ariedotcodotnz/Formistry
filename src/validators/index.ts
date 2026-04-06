@@ -4,8 +4,11 @@ import type {
   ValidatorOutput,
   ValidatorSpec,
 } from '../types/contracts'
+import { PhoneNumberUtil } from 'google-libphonenumber'
 
 type Severity = ValidationIssue['severity']
+
+const phoneUtil = PhoneNumberUtil.getInstance()
 
 function asString(value: unknown): string {
   if (value == null)
@@ -87,6 +90,62 @@ export function maxLength(max: number, message?: string): ValidatorSpec {
   }
 }
 
+export function minValue(min: number, message?: string): ValidatorSpec {
+  return {
+    name: 'minValue',
+    code: 'validation.minValue',
+    message,
+    validate: ({ value, t }) => {
+      const numeric = Number(value)
+      if (Number.isNaN(numeric))
+        return message || t('validation.numeric')
+
+      return numeric >= min || message || t('validation.minValue', { min })
+    },
+  }
+}
+
+export function maxValue(max: number, message?: string): ValidatorSpec {
+  return {
+    name: 'maxValue',
+    code: 'validation.maxValue',
+    message,
+    validate: ({ value, t }) => {
+      const numeric = Number(value)
+      if (Number.isNaN(numeric))
+        return message || t('validation.numeric')
+
+      return numeric <= max || message || t('validation.maxValue', { max })
+    },
+  }
+}
+
+export function between(min: number, max: number, message?: string): ValidatorSpec {
+  return {
+    name: 'between',
+    code: 'validation.between',
+    message,
+    validate: ({ value, t }) => {
+      const numeric = Number(value)
+      if (Number.isNaN(numeric))
+        return message || t('validation.numeric')
+
+      return (numeric >= min && numeric <= max) || message || t('validation.between', { min, max })
+    },
+  }
+}
+
+export function oneOf<T extends readonly unknown[]>(allowed: T, message?: string): ValidatorSpec {
+  return {
+    name: 'oneOf',
+    code: 'validation.oneOf',
+    message,
+    validate: ({ value, t }) => {
+      return allowed.includes(value) || message || t('validation.oneOf')
+    },
+  }
+}
+
 export function pattern(regex: RegExp, message?: string): ValidatorSpec {
   return {
     name: 'pattern',
@@ -134,6 +193,27 @@ export function email(message?: string): ValidatorSpec {
   }
 }
 
+export function phone(region = 'US', message?: string): ValidatorSpec {
+  return {
+    name: 'phone',
+    code: 'validation.phone',
+    message,
+    validate: ({ value, t }) => {
+      const candidate = asString(value).trim()
+      if (!candidate)
+        return true
+
+      try {
+        const parsed = phoneUtil.parseAndKeepRawInput(candidate, region)
+        return phoneUtil.isValidNumber(parsed) || message || t('validation.phone')
+      }
+      catch {
+        return message || t('validation.phone')
+      }
+    },
+  }
+}
+
 export function numeric(message?: string): ValidatorSpec {
   return {
     name: 'numeric',
@@ -160,6 +240,67 @@ export function date(message?: string): ValidatorSpec {
         return true
 
       return !Number.isNaN(Date.parse(candidate)) || message || t('validation.date')
+    },
+  }
+}
+
+export function url(message?: string): ValidatorSpec {
+  return {
+    name: 'url',
+    code: 'validation.url',
+    message,
+    validate: ({ value, t }) => {
+      const candidate = asString(value).trim()
+      if (!candidate)
+        return true
+
+      try {
+        // eslint-disable-next-line no-new
+        new URL(candidate)
+        return true
+      }
+      catch {
+        return message || t('validation.url')
+      }
+    },
+  }
+}
+
+export function boolean(message?: string): ValidatorSpec {
+  return {
+    name: 'boolean',
+    code: 'validation.boolean',
+    message,
+    validate: ({ value, t }) => {
+      return typeof value === 'boolean' || message || t('validation.boolean')
+    },
+  }
+}
+
+export function arrayMinLength(min: number, message?: string): ValidatorSpec {
+  return {
+    name: 'arrayMinLength',
+    code: 'validation.array.minLength',
+    message,
+    validate: ({ value, t }) => {
+      if (!Array.isArray(value))
+        return message || t('validation.array')
+
+      return value.length >= min || message || t('validation.array.minLength', { min })
+    },
+  }
+}
+
+export function arrayMaxLength(max: number, message?: string): ValidatorSpec {
+  return {
+    name: 'arrayMaxLength',
+    code: 'validation.array.maxLength',
+    message,
+    validate: ({ value, t }) => {
+      if (!Array.isArray(value))
+        return message || t('validation.array')
+
+      return value.length <= max || message || t('validation.array.maxLength', { max })
     },
   }
 }

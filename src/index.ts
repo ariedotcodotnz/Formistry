@@ -32,15 +32,24 @@ export type {
 } from './types/contracts'
 
 export {
+  arrayMaxLength,
+  arrayMinLength,
+  between,
+  boolean,
   custom,
   customForm,
   date,
   email,
   equalsField,
   maxLength,
+  maxValue,
   minLength,
+  minValue,
   normalizeValidatorResult,
   numeric,
+  oneOf,
   pattern,
+  phone,
   required,
+  url,
 } from './validators'

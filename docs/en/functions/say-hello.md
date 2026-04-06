@@ -3,12 +3,13 @@
 ## createFormistry
 
 ```ts
-import { createFormistry, defineSchema, required } from 'formistry'
+import { createFormistry, defineSchema, phone, required } from 'formistry'
 
 const formistry = createFormistry({
   schema: defineSchema({
     fields: {
-      name: { validators: [required()] },
+      fullName: { validators: [required()] },
+      phoneNumber: { validators: [phone('US')] },
     },
   }),
 })
@@ -17,14 +18,17 @@ const formistry = createFormistry({
 ## validateField
 
 ```ts
-const fieldResult = await formistry.validateField('name', '')
+const fieldResult = await formistry.validateField('phoneNumber', '+1 650-253-0000')
 console.log(fieldResult.valid)
 ```
 
 ## validateForm
 
 ```ts
-const formResult = await formistry.validateForm({ name: '' })
+const formResult = await formistry.validateForm({
+  fullName: 'Jane',
+  phoneNumber: '+1 650-253-0000',
+})
 console.log(formResult.issues)
 ```
 
@@ -33,7 +37,7 @@ console.log(formResult.issues)
 ```ts
 import { masks } from 'formistry'
 
-formistry.registerMask('phone', masks.phoneUS)
+formistry.registerMask('phoneNumber', masks.phoneUS)
 ```
 
 ## on(event, handler)

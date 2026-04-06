@@ -1,6 +1,10 @@
 import { describe, expect, it, vi } from 'vitest'
 
 import {
+  arrayMaxLength,
+  arrayMinLength,
+  between,
+  boolean,
   createEventBus,
   createFormistry,
   date,
@@ -10,12 +14,17 @@ import {
   equalsField,
   masks,
   maxLength,
+  maxValue,
   minLength,
+  minValue,
   numeric,
+  oneOf,
+  phone,
   reportByField,
   reportBySeverity,
   reportFirstError,
   required,
+  url,
 } from '../src'
 
 describe('validators', () => {
@@ -58,6 +67,55 @@ describe('validators', () => {
 
     expect(result.valid).toBe(false)
     expect(result.issues.length).toBe(4)
+  })
+
+  it('validates phone numbers using libphonenumber', async () => {
+    const formistry = createFormistry({
+      schema: defineSchema({
+        fields: {
+          phone: { validators: [phone('US')] },
+        },
+      }),
+    })
+
+    const valid = await formistry.validateField('phone', '+1 650-253-0000')
+    const invalid = await formistry.validateField('phone', '12345')
+
+    expect(valid.valid).toBe(true)
+    expect(invalid.valid).toBe(false)
+  })
+
+  it('validates expanded field types', async () => {
+    const formistry = createFormistry({
+      schema: defineSchema({
+        fields: {
+          age: { validators: [numeric(), minValue(18), maxValue(60), between(18, 60)] },
+          role: { validators: [oneOf(['admin', 'editor', 'viewer'] as const)] },
+          website: { validators: [url()] },
+          consent: { validators: [boolean()] },
+          tags: { validators: [arrayMinLength(1), arrayMaxLength(3)] },
+        },
+      }),
+    })
+
+    const bad = await formistry.validateForm({
+      age: 12,
+      role: 'owner',
+      website: 'not-a-url',
+      consent: 'yes',
+      tags: [],
+    })
+
+    const good = await formistry.validateForm({
+      age: 30,
+      role: 'editor',
+      website: 'https://example.com',
+      consent: true,
+      tags: ['a', 'b'],
+    })
+
+    expect(bad.valid).toBe(false)
+    expect(good.valid).toBe(true)
   })
 })
 

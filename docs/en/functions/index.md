@@ -20,10 +20,19 @@
 - `required`
 - `minLength`
 - `maxLength`
+- `minValue`
+- `maxValue`
+- `between`
+- `oneOf`
 - `pattern`
 - `email`
+- `phone` (powered by Google libphonenumber)
 - `numeric`
 - `date`
+- `url`
+- `boolean`
+- `arrayMinLength`
+- `arrayMaxLength`
 - `equalsField`
 - `custom`
 - `customForm`

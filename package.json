@@ -56,8 +56,12 @@
     "clean": "rimraf dist",
     "release": "bumpp && pnpm build && pnpm publish"
   },
+  "dependencies": {
+    "google-libphonenumber": "3.2.44"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.0",
+    "@types/google-libphonenumber": "7.4.30",
     "bumpp": "^10.1.0",
     "eslint": "^9.26.0",
     "lint-staged": "^15.5.2",
