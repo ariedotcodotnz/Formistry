@@ -1,30 +1,29 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
-  name: TypeScript Library Starter Template
-  text: Provides VitePress documentation
-  tagline: Supports building ESM, CJS and IIFE formats.
+  name: Formistry.js
+  text: Comprehensive TypeScript Form Validation
+  tagline: Framework-agnostic validation, async checks, reporting, alerting, and input masking.
   image:
     src: /logo.png
-    alt: Logo Image
+    alt: Formistry logo
     width: 200px
   actions:
     - theme: brand
-      text: Getting Started
+      text: Get Started
       link: /guide/getting-started
     - theme: alt
       text: Source Code
-      link: https://github.com/starter-collective/starter-lib-ts
+      link: https://github.com/ariedotcodotnz/Formistry
 
 features:
-  - title: Bundle with tsup
-    details: Build package with tsup - Bundle your TypeScript library with simple config.
-  - title: Unit Test
-    details: Out-of-the-box unit testing with Vitest.
-  - title: VitePress documentation
-    details: Deploy on Netlify with zero-config, supports other deployment methods as well.
-  - title: Publish & Version
-    details: Manage versions using the CLI, and publish to npm with zero-config
+  - title: Validation Engine
+    details: Deterministic pipeline with preprocess, sync rules, async rules, aggregation, and events.
+  - title: Reporting + Alerts
+    details: Structured issues with severity and lifecycle event hooks.
+  - title: Input Masks
+    details: Framework-agnostic masking for phone, date, credit-card and token patterns.
+  - title: TypeScript-first
+    details: Strict, composable contracts for maintainable long-term API evolution.
 ---

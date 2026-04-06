@@ -1,23 +1,26 @@
 {
-  "name": "starter-lib-ts",
+  "name": "formistry",
   "type": "module",
-  "version": "1.3.0",
+  "version": "0.1.0",
   "packageManager": "pnpm@9.10.0",
-  "description": "TypeScript library starter template, provides VitePress documentation, supports building ESM, CJS and IIFE formats.",
-  "author": "Kieran Wang <kieranwme@gmail.com> (https://github.com/kieranwv/)",
+  "description": "Formistry.js is a modern framework-agnostic TypeScript form validation library with validation, reporting, alerting, async checks, and input masking.",
+  "author": "Arie Coetzer",
   "license": "MIT",
-  "homepage": "https://github.com/starter-collective/starter-lib-ts#readme",
+  "homepage": "https://github.com/ariedotcodotnz/Formistry#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/starter-collective/starter-lib-ts.git"
+    "url": "git+https://github.com/ariedotcodotnz/Formistry.git"
   },
   "bugs": {
-    "url": "https://github.com/starter-collective/starter-lib-ts/issues"
+    "url": "https://github.com/ariedotcodotnz/Formistry/issues"
   },
   "keywords": [
+    "form",
+    "validation",
     "typescript",
-    "library",
-    "starter"
+    "framework-agnostic",
+    "input-mask",
+    "reporting"
   ],
   "exports": {
     ".": {
@@ -30,7 +33,7 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "unpkg": "./dist/index.global.js",
-  "jsdelivr": "./index.global.js",
+  "jsdelivr": "./dist/index.global.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"

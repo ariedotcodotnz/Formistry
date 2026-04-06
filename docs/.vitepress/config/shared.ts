@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import { GITHUB_URL, WEBSITE_URL } from './constants'
 
 export const shared = defineConfig({
-  title: 'TypeScript Library Starter Template',
+  title: 'Formistry.js',
   rewrites: {
     'en/:rest*': ':rest*',
   },
@@ -11,9 +11,6 @@ export const shared = defineConfig({
   metaChunk: true,
   sitemap: {
     hostname: WEBSITE_URL,
-    transformItems(items) {
-      return items.filter(item => !item.url.includes('migration'))
-    },
   },
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -21,8 +18,8 @@ export const shared = defineConfig({
     ['meta', { name: 'theme-color', content: '#42b883' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
-    ['meta', { property: 'og:title', content: 'TypeScript Library Starter Template' }],
-    ['meta', { property: 'og:site_name', content: 'TypeScript Library Starter Template' }],
+    ['meta', { property: 'og:title', content: 'Formistry.js' }],
+    ['meta', { property: 'og:site_name', content: 'Formistry.js' }],
     ['meta', { property: 'og:image', content: '/logo.png' }],
     ['meta', { property: 'og:url', content: WEBSITE_URL }],
   ],

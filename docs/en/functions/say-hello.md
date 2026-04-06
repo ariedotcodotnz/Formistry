@@ -1,11 +1,45 @@
-# sayHello
+# Core API
 
-A demo function to use `starter-lib-ts`.
+## createFormistry
 
-## Usage
+```ts
+import { createFormistry, defineSchema, required } from 'formistry'
 
-```js
-import { sayHello } from 'starter-lib-ts'
+const formistry = createFormistry({
+  schema: defineSchema({
+    fields: {
+      name: { validators: [required()] },
+    },
+  }),
+})
+```
 
-sayHello('Kieran') // Hello, Kieran!
+## validateField
+
+```ts
+const fieldResult = await formistry.validateField('name', '')
+console.log(fieldResult.valid)
+```
+
+## validateForm
+
+```ts
+const formResult = await formistry.validateForm({ name: '' })
+console.log(formResult.issues)
+```
+
+## registerMask
+
+```ts
+import { masks } from 'formistry'
+
+formistry.registerMask('phone', masks.phoneUS)
+```
+
+## on(event, handler)
+
+```ts
+formistry.on('field:invalid', ({ field, result }) => {
+  console.log(field, result.issues)
+})
 ```

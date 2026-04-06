@@ -4,7 +4,7 @@ import { GITHUB_URL } from './constants'
 
 export const zh = defineConfig({
   lang: 'zh-CN',
-  description: 'TypeScript 库启动模板，提供 VitePress 在线文档，支持构建 ESM 和 CJS 格式。',
+  description: 'Formistry.js 是现代、与框架无关的 TypeScript 表单验证库，支持异步校验、报告、事件告警和输入掩码。',
   themeConfig: {
     editLink: {
       pattern: `${GITHUB_URL}/edit/main/docs/:path`,
@@ -12,7 +12,7 @@ export const zh = defineConfig({
     },
     nav: [
       { text: '指南', link: '/zh/guide/what-is', activeMatch: '/zh/guide/' },
-      { text: '函数', link: '/zh/functions', activeMatch: '/zh/functions/' },
+      { text: 'API', link: '/zh/functions', activeMatch: '/zh/functions/' },
       {
         text: `v${pkg.version}`,
         items: [
@@ -28,21 +28,22 @@ export const zh = defineConfig({
         text: '指南',
         collapsed: false,
         items: [
-          { text: '什么是 starter-lib-ts？', link: '/zh/guide/what-is' },
-          { text: '立即开始', link: '/zh/guide/getting-started' },
+          { text: '什么是 Formistry.js？', link: '/zh/guide/what-is' },
+          { text: '快速开始', link: '/zh/guide/getting-started' },
         ],
       },
       {
-        text: '函数',
+        text: 'API',
         collapsed: false,
         items: [
-          { text: 'sayHello', link: '/zh/functions/say-hello' },
+          { text: '概览', link: '/zh/functions' },
+          { text: '核心 API', link: '/zh/functions/say-hello' },
         ],
       },
     ],
     footer: {
       message: '基于 MIT 许可证发布。',
-      copyright: '版权 © 2024-present Kieran Wang',
+      copyright: '版权 © 2026-present Formistry contributors',
     },
   },
 })

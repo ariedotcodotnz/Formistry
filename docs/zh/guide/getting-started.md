@@ -1,40 +1,49 @@
-# 立即开始
+# 快速开始
 
-本节将帮助您设置并开始使用 `starter-lib-ts`。
-
-## 使用包管理器
+## 安装
 
 ::: code-group
 
 ```sh [npm]
-npm install starter-lib-ts
+npm install formistry
 ```
 
 ```sh [yarn]
-yarn add starter-lib-ts
+yarn add formistry
 ```
 
 ```sh [pnpm]
-pnpm install starter-lib-ts
+pnpm add formistry
 ```
 :::
 
 ## 浏览器直接引入
 
-```js
-<script src="https://unpkg.com/starter-lib-ts"></script>
+```html
+<script src="https://unpkg.com/formistry"></script>
 ```
 
-它将作为 `window.StarterLibTs` 暴露在全局对象中。
+全局变量名：`window.Formistry`。
 
-## 使用示例
+## 快速示例
 
-只需要从 `starter-lib-ts` 导入所需的函数。
+```ts
+import { createFormistry, defineSchema, email, required } from 'formistry'
 
-```js
-import { sayHello } from 'starter-lib-ts'
+const formistry = createFormistry({
+  schema: defineSchema({
+    fields: {
+      email: {
+        validators: [required(), email()],
+      },
+    },
+  }),
+})
 
-sayHello('Kieran')
+const result = await formistry.validateForm({ email: 'user@example.com' })
+console.log(result.valid)
 ```
 
-更多内容请参考[函数列表](/functions/index)。
+## 下一步
+
+- API 概览：[/zh/functions](/zh/functions)

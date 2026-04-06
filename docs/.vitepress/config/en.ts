@@ -4,7 +4,7 @@ import { GITHUB_URL } from './constants'
 
 export const en = defineConfig({
   lang: 'en-US',
-  description: 'TypeScript library starter template that provides VitePress documentation, supports building ESM and CJS formats.',
+  description: 'Formistry.js is a modern framework-agnostic TypeScript form validation library with async checks, reporting, alerts, and input masks.',
   themeConfig: {
     editLink: {
       pattern: `${GITHUB_URL}/edit/main/docs/:path`,
@@ -12,7 +12,7 @@ export const en = defineConfig({
     },
     nav: [
       { text: 'Guide', link: '/guide/what-is', activeMatch: '/guide/' },
-      { text: 'Functions', link: '/functions', activeMatch: '/functions/' },
+      { text: 'API', link: '/functions', activeMatch: '/functions/' },
       {
         text: `v${pkg.version}`,
         items: [
@@ -28,15 +28,16 @@ export const en = defineConfig({
         text: 'Guide',
         collapsed: false,
         items: [
-          { text: 'What is starter-lib-ts?', link: '/guide/what-is' },
+          { text: 'What is Formistry.js?', link: '/guide/what-is' },
           { text: 'Getting Started', link: '/guide/getting-started' },
         ],
       },
       {
-        text: 'Functions',
+        text: 'API',
         collapsed: false,
         items: [
-          { text: 'sayHello', link: '/functions/say-hello' },
+          { text: 'Overview', link: '/functions' },
+          { text: 'Core API', link: '/functions/say-hello' },
         ],
       },
     ],
@@ -45,7 +46,7 @@ export const en = defineConfig({
     },
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024-present Kieran Wang',
+      copyright: 'Copyright © 2026-present Formistry contributors',
     },
   },
 })

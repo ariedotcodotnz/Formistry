@@ -4,7 +4,7 @@ export default defineConfig({
   entry: ['src/index.ts'],
   clean: true,
   format: ['cjs', 'esm', 'iife'],
-  globalName: 'StarterLibTs',
+  globalName: 'Formistry',
   dts: true,
   minify: true,
 })

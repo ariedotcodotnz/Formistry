@@ -1,40 +1,49 @@
 # Getting Started
 
-This section will help you set up and start using `starter-lib-ts`.
-
-## Using Package Manager
+## Install
 
 ::: code-group
 
 ```sh [npm]
-npm install starter-lib-ts
+npm install formistry
 ```
 
 ```sh [yarn]
-yarn add starter-lib-ts
+yarn add formistry
 ```
 
 ```sh [pnpm]
-pnpm install starter-lib-ts
+pnpm add formistry
 ```
 :::
 
 ## Browser Direct Import
 
-```js
-<script src="https://unpkg.com/starter-lib-ts"></script>
+```html
+<script src="https://unpkg.com/formistry"></script>
 ```
 
-It will be exposed as `window.StarterLibTs` in the global object.
+Global name: `window.Formistry`.
 
-## Usage Example
+## Quick setup
 
-Simply import the required functions from `starter-lib-ts`.
+```ts
+import { createFormistry, defineSchema, email, required } from 'formistry'
 
-```js
-import { sayHello } from 'starter-lib-ts'
+const formistry = createFormistry({
+  schema: defineSchema({
+    fields: {
+      email: {
+        validators: [required(), email()],
+      },
+    },
+  }),
+})
 
-sayHello('Kieran')
+const result = await formistry.validateForm({ email: 'user@example.com' })
+console.log(result.valid)
 ```
 
-For more information, please refer to the [functions List](/functions/index).
+## Next steps
+
+- API overview: [/functions](/functions)
