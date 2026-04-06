@@ -16,7 +16,7 @@ function interpolate(template: string, variables?: Record<string, string | numbe
   if (!variables)
     return template
 
-  return template.replace(/\{(.*?)\}/g, (_, key: string) => {
+  return template.replace(/\{([^{}]+)\}/g, (_match: string, key: string) => {
     return String(variables[key] ?? `{${key}}`)
   })
 }
